@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Your Captain</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <h1>Create Your Captain</h1>
+  <form id="captainForm">
+    <input type="text" id="name" placeholder="Name" required />
+    <input type="number" id="bounty" placeholder="Bounty" required />
+    <select id="fruit"></select>
+    <input type="file" id="photo" accept="image/*" />
+    <img id="preview" alt="Preview" style="max-width: 200px" />
+    <button type="submit">Save</button>
+  </form>
+  <script src="js/api.js"></script>
+  <script src="js/captain.js"></script>
+</body>
+</html>
