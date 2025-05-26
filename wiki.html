@@ -1,4 +1,4 @@
-<!-- === home.html === -->
+<!-- === wiki.html === -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,114 +6,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>One Piece Wiki</title>
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      scroll-snap-type: x mandatory;
-      padding: 1rem;
-    }
-    .carousel::-webkit-scrollbar {
-      display: none;
-    }
-    .carousel-item {
-      flex: 0 0 auto;
-      scroll-snap-align: center;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 0.5rem;
-      text-align: center;
-      min-width: 150px;
-    }
-    h2 {
-      margin-top: 2rem;
-    }
-  </style>
+  <link rel="stylesheet" href="css/wiki.css" />
 </head>
 <body>
-  <header>
     <nav>
-      <a href="home.html">Wiki</a>
-      <a href="create-captain.html">Create Captain</a>
-      <a href="your-crew.html">Your Crew</a>
-      <a href="people.html">People</a>
-      <a href="index.html">Log Out</a>
+      <script src="js/navbar.js"></script>
     </nav>
-  </header>
   <main>
     <h1>One Piece Wiki</h1>
 
-    <h2>Characters</h2>
-    <div class="carousel" id="characters"></div>
+    <div class="lists">
+      <h2>Characters</h2>
+      <div class="carousel" id="characters"></div>
 
-    <h2>Devil Fruits</h2>
-    <div class="carousel" id="fruits"></div>
+      <h2>Devil Fruits</h2>
+      <div class="carousel" id="fruits"></div>
 
-    <h2>Ships</h2>
-    <div class="carousel" id="ships"></div>
+      <h2>Ships</h2>
+      <div class="carousel" id="ships"></div>
 
-    <h2>Swords</h2>
-    <div class="carousel" id="swords"></div>
+      <h2>Swords</h2>
+      <div class="carousel" id="swords"></div>
 
-    <h2>Crews</h2>
-    <div class="carousel" id="crews"></div>
+      <h2>Crews</h2>
+      <div class="carousel" id="crews"></div>     
+    </div>
+
   </main>
+  
   <script src="js/api.js"></script>
+  
   <script>
-    async function loadWiki() {
-      const charBox = document.getElementById("characters");
-      const fruitBox = document.getElementById("fruits");
-      const shipBox = document.getElementById("ships");
-      const swordBox = document.getElementById("swords");
-      const crewBox = document.getElementById("crews");
-
-      const [chars, fruits] = await Promise.all([
-        fetch("https://onepieceapi.dev/api/v1/characters").then(r => r.json()),
-        fetch("https://onepieceapi.dev/api/v1/devil-fruits").then(r => r.json())
-      ]);
-
-      chars.slice(0, 10).forEach(c => {
-        const el = document.createElement("div");
-        el.className = "carousel-item";
-        el.innerHTML = `<img src="${c.image}" alt="${c.name}" width="100"><br>${c.name}`;
-        charBox.appendChild(el);
-      });
-
-      fruits.slice(0, 10).forEach(f => {
-        const el = document.createElement("div");
-        el.className = "carousel-item";
-        el.innerHTML = `<strong>${f.name}</strong><br>${f.type}`;
-        fruitBox.appendChild(el);
-      });
-
-      const ships = ["Going Merry", "Thousand Sunny", "Red Force", "Moby Dick", "Queen Mama Chanter"];
-      ships.forEach(s => {
-        const el = document.createElement("div");
-        el.className = "carousel-item";
-        el.textContent = s;
-        shipBox.appendChild(el);
-      });
-
-      const swords = ["Yoru", "Enma", "Wado Ichimonji", "Shusui", "Sandai Kitetsu"];
-      swords.forEach(s => {
-        const el = document.createElement("div");
-        el.className = "carousel-item";
-        el.textContent = s;
-        swordBox.appendChild(el);
-      });
-
-      const crews = ["Straw Hat Pirates", "Red Hair Pirates", "Whitebeard Pirates", "Blackbeard Pirates", "Big Mom Pirates"];
-      crews.forEach(c => {
-        const el = document.createElement("div");
-        el.className = "carousel-item";
-        el.textContent = c;
-        crewBox.appendChild(el);
-      });
-    }
-
-    loadWiki();
+    loadCharacters();
+    loadDevilFruits();
+    loadShips();
+    loadSwords();
+    loadCrews();
   </script>
 </body>
 </html>

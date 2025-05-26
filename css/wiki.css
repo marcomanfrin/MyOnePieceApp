@@ -1,0 +1,29 @@
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+    padding: 1rem;
+}
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+.carousel-item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0.5rem;
+    text-align: center;
+    min-width: 150px;
+}
+h2 {
+    margin-top: 2rem;
+}
+
+.lists {
+    margin: 10rem;
+    margin-top: 0;
+    padding: 0;
+}
