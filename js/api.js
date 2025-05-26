@@ -44,6 +44,17 @@ async function loadDevilFruits(){
   }
 }
 
+async function loadFruits(){
+  try {
+    const res = await fetch("https://api.api-onepiece.com/v2/fruits/en");
+    const data = await res.json();
+    return data.map(f => f.name).filter(Boolean);
+  } catch (err) {
+    console.error("Errore nel caricamento dei frutti:", err);
+    return [];
+  }
+}
+
 async function loadShips(){
   try {
     const res = await fetch("https://api.api-onepiece.com/v2/boats/en");

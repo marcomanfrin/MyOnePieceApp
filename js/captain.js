@@ -1,7 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-  loadFruits();
+document.addEventListener("DOMContentLoaded", async () => {
+  const f = await loadFruits(); // ✅ attendi il caricamento
+  const fruitSelect = document.getElementById("fruit");
+
+  f.forEach(fruit => {
+    const option = document.createElement("option");
+    option.value = fruit;
+    option.textContent = fruit; // ✅ fruit è una stringa
+    fruitSelect.appendChild(option);
+  });
+
   const input = document.getElementById("photo");
   const preview = document.getElementById("preview");
+
   input.addEventListener("change", () => {
     const file = input.files[0];
     if (file) {
