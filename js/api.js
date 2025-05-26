@@ -6,12 +6,11 @@ async function loadCharacters() {
 
     const charBox = document.getElementById("characters");
 
-    // Esempio: Mostra i primi 10 personaggi
     data.forEach(c => {
       const el = document.createElement("div");
-      el.className = "carousel-item";
+      el.className = "carousel-item character";
       el.innerHTML = `
-        <img src="${c.image} alt="no img" width="100"><br>
+        <img src="${c.image}" alt="no img" width="100"><br>
         <strong>${c.name}</strong><br>
         <small>${c.job}</small><br>
         <small>bounty: ${c.bounty}</small><br>
