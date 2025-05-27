@@ -32,9 +32,10 @@ h2 {
   height: 160px;
   border-radius: 50%;
   overflow: hidden;
-  background: #1f2937; /* scuro elegante */
+  background: #1f2937;
   color: #f9fafb;
   display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;

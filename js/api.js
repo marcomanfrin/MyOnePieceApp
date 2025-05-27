@@ -9,11 +9,12 @@ async function loadCharacters() {
     data.forEach(c => {
       const el = document.createElement("div");
       el.className = "carousel-item character";
+      //<img src="${c.image}" alt="no img" width="100"><br>
       el.innerHTML = `
-        <img src="${c.image}" alt="no img" width="100"><br>
         <strong>${c.name}</strong><br>
         <small>${c.job}</small><br>
         <small>bounty: ${c.bounty}</small><br>
+        <btn class="btn btn-primary" onclick="location.href='detailPages/char.html'">Details</btn>
       `;
       charBox.appendChild(el);
     });
@@ -31,11 +32,12 @@ async function loadDevilFruits(){
 
     data.forEach(c => {
       const el = document.createElement("div");
-      el.className = "carousel-item";
+      el.className = "carousel-item fruits";
       el.innerHTML = `
         <img src="${c.image}" alt="no img" width="100"><br>
         <strong>${c.name}</strong><br>
         <small>${c.roman_name}</small>
+        <btn class="btn btn-primary" onclick="location.href='detailPages/fruit.html'">Details</btn>
       `;
       charBox.appendChild(el);
     });
