@@ -12,10 +12,29 @@
 </nav>
 <body>
   <h1>Your Crew</h1>
+  
   <div id="captain"></div>
   <div id="ship"></div>
   <div id="crew"></div>
+
   <div>Total Bounty: <span id="totalBounty">0</span></div>
   <script src="js/crew.js"></script>
+
 </body>
+
+<style>
+  #captain, #ship, #crew {
+    margin-bottom: 1.5rem;
+  }
+  .crew-member {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    background-color: #f8f8f8;
+  }
+</style>
 </html>

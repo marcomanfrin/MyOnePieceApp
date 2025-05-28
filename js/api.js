@@ -1,7 +1,9 @@
 
+const API_BASE = "https://api.api-onepiece.com/v2";
+
 async function loadCharacters() {
   try {
-    const res = await fetch("https://api.api-onepiece.com/v2/characters/en");
+    const res = await fetch(`${API_BASE}/characters/en`);
     const data = await res.json();
 
     const charBox = document.getElementById("characters");
@@ -14,7 +16,7 @@ async function loadCharacters() {
         <strong>${c.name}</strong><br>
         <small>${c.job}</small><br>
         <small>bounty: ${c.bounty}</small><br>
-        <btn class="btn btn-primary" onclick="location.href='detailPages/char.html'">Details</btn>
+        <button class="btn btn-primary" onclick="location.href='detailPages/char.html'">Details</button>
       `;
       charBox.appendChild(el);
     });
@@ -22,10 +24,9 @@ async function loadCharacters() {
     console.error("Errore nel caricamento dei personaggi:", err);
   }
 }
-
 async function loadDevilFruits(){
   try {
-    const res = await fetch("https://api.api-onepiece.com/v2/fruits/en");
+    const res = await fetch(`${API_BASE}/fruits/en`);
     const data = await res.json();
 
     const charBox = document.getElementById("fruits");
@@ -37,7 +38,7 @@ async function loadDevilFruits(){
         <img src="${c.image}" alt="no img" width="100"><br>
         <strong>${c.name}</strong><br>
         <small>${c.roman_name}</small>
-        <btn class="btn btn-primary" onclick="location.href='detailPages/fruit.html'">Details</btn>
+        <button class="btn btn-primary" onclick="location.href='detailPages/fruit.html'">Details</button>
       `;
       charBox.appendChild(el);
     });
@@ -45,10 +46,9 @@ async function loadDevilFruits(){
     console.error("Errore nel caricamento dei frutti:", err);
   }
 }
-
 async function loadFruits(){
   try {
-    const res = await fetch("https://api.api-onepiece.com/v2/fruits/en");
+    const res = await fetch(`${API_BASE}/fruits/en`);
     const data = await res.json();
     return data.map(f => f.name).filter(Boolean);
   } catch (err) {
@@ -56,10 +56,9 @@ async function loadFruits(){
     return [];
   }
 }
-
 async function loadShips(){
   try {
-    const res = await fetch("https://api.api-onepiece.com/v2/boats/en");
+    const res = await fetch(`${API_BASE}/boats/en`);
     const data = await res.json();
 
     const charBox = document.getElementById("ships");
@@ -78,10 +77,9 @@ async function loadShips(){
     console.error("Errore nel caricamento delle navi:", err);
   }
 }
-
 async function loadSwords(){
   try {
-    const res = await fetch("https://api.api-onepiece.com/v2/swords/en");
+    const res = await fetch(`${API_BASE}/swords/en`);
     const data = await res.json();
 
     const charBox = document.getElementById("swords");
@@ -101,10 +99,9 @@ async function loadSwords(){
     console.error("Errore nel caricamento delle spade:", err);
   }
 }
-
 async function loadCrews(){
   try {
-    const res = await fetch("https://api.api-onepiece.com/v2/crews/en");
+    const res = await fetch(`${API_BASE}/crews/en`);
     const data = await res.json();
 
     const charBox = document.getElementById("crews");
@@ -124,3 +121,15 @@ async function loadCrews(){
     console.error("Errore nel caricamento delle ciurme:", err);
   }
 }
+
+
+
+
+document.addEventListener("DOMContentLoaded", async function () {
+  await loadCharacters();
+  await loadDevilFruits();
+  await loadShips();
+  await loadSwords();
+  await loadCrews();
+})
+
