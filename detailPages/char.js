@@ -56,7 +56,6 @@ function renderFruit(fruit) {
   const container = document.getElementById("detail");
   const html = `
     <h2>Devil Fruit: ${fruit.name}</h2>
-    <img src="${fruit.image || 'img/default-fruit.png'}" alt="${fruit.name}" width="150" />
     <p><strong>Type:</strong> ${fruit.type}</p>
     <p><strong>Effect:</strong> ${fruit.description || "No description available."}</p>
   `;

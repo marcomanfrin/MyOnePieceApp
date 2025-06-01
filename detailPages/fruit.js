@@ -29,7 +29,6 @@ function renderFruitDetail(fruit) {
 
   const html = `
     <h1>${fruit.name}</h1>
-    <img src="${fruit.image || 'img/default-fruit.png'}" alt="${fruit.name}" width="180" />
     <p><strong>Type:</strong> ${fruit.type}</p>
     <p><strong>Description:</strong> ${fruit.description || "No description available."}</p>
   `;

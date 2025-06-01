@@ -1,3 +1,6 @@
+const API_BASE = "https://api.api-onepiece.com/v2";
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   const f = await loadFruits(); // ✅ attendi il caricamento
   const fruitSelect = document.getElementById("fruit");
@@ -69,3 +72,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
+async function loadFruits(){
+  try {
+    const res = await fetch(`${API_BASE}/fruits/en`);
+    const data = await res.json();
+    return data.map(f => f.name).filter(Boolean);
+  } catch (err) {
+    console.error("Errore nel caricamento dei frutti:", err);
+    return [];
+  }
+}

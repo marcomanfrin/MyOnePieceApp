@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const captain = user.captain;
   const boatId = user.boatId;
-  const crewIds = user.crewMembers || [];
+  const crewIds = user.crew || [];
 
   let totalBounty = 0;
 
@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   totalBounty += parseInt(captain.bounty || 0);
   document.getElementById("captain").innerHTML = `
     <h2>Captain: ${captain.name}</h2>
-    <img src="${captain.image || 'img/default-captain.png'}" width="150" />
     <p>Fruit: ${captain.fruit || 'None'}</p>
     <p>Bounty: ${captain.bounty}</p>`;
 
@@ -29,8 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (boatId) {
     const ship = await fetchShipById(boatId);
     document.getElementById("ship").innerHTML = `
-      <h2>Ship: ${ship.name}</h2>
-      <img src="${ship.image || 'img/default-ship.png'}" width="200" />`;
+      <h2>Ship: ${ship.name}</h2>`;
   }
 
   // === MEMBRI DELLA CIURMA ===
@@ -40,12 +38,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const member = await fetchCharacterById(id);
     let bounty = parseInt((member.bounty || "0").replace(/\./g, ""), 10);
     totalBounty += (bounty || 0);
-    console.log("Total Bounty: " + totalBounty);
     const div = document.createElement("div");
     div.className = "crew-member";
     div.innerHTML = `
       <h3>${member.name}</h3>
-      <img src="${member.image || 'img/default-crew.png'}" width="100" />
       <p>Role: ${member.job || 'Unknown'}</p>
       <p>Bounty: ${member.bounty}</p>`;
     crewBox.appendChild(div);
