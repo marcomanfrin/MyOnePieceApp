@@ -1,51 +1,64 @@
-function createMovieDetailsCard(movie) {
-  const movieDetailContainer = document.getElementById("movieDetail")
+const API_BASE = "https://api.api-onepiece.com/v2";
 
-  const img = document.createElement("img")
-  img.src = movie.Poster
-  img.alt = movie.Title
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("Detail page loaded");
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  if (!id) {
+    document.getElementById("detail").textContent = "No character ID provided.";
+    return;
+  }
 
-  const h1 = document.createElement("h1")
-  h1.textContent = movie.Title
+  try {
+    console.log(`Fetching character with ID: ${id}`);
+    const character = await fetchCharacterById(id);
+    console.log(character);
+    console.log(`Rendering character: ${character.name}`);
+    renderCharacter(character);
 
-  const genreParagraph = document.createElement("p")
-  genreParagraph.innerHTML = "<strong> Genre:</strong>" + movie.Genre
+    if (character.fruit && character.fruit.id) {
+      const fruit = await fetchFruitById(character.fruit.id);
+      renderFruit(fruit);
+    }
+  } catch (err) {
+    document.getElementById("detail").textContent = "Error loading data.";
+    console.error(err);
+  }
+});
 
-  const plotParagraph = document.createElement("p")
-  plotParagraph.innerHTML = "<strong> Plot:</strong>" + movie.Plot
-
-  const directorParagraph = document.createElement("p")
-  directorParagraph.innerHTML = "<strong> Director:</strong>" + movie.Director
-
-  const actorsParagraph = document.createElement("p")
-  actorsParagraph.innerHTML = "<strong> Actors:</strong>" + movie.Actors
-
-  const backLink = document.createElement("a")
-  backLink.href = "index.html"
-  backLink.textContent = "⬅️ Back to Fakeflix"
-
-  movieDetailContainer.appendChild(img)
-  movieDetailContainer.appendChild(h1)
-  movieDetailContainer.appendChild(genreParagraph)
-  movieDetailContainer.appendChild(plotParagraph)
-  movieDetailContainer.appendChild(directorParagraph)
-  movieDetailContainer.appendChild(actorsParagraph)
-  movieDetailContainer.appendChild(backLink)
+async function fetchCharacterById(id) {
+  const res = await fetch(`${API_BASE}/characters/en/${id}`);
+  if (!res.ok) throw new Error("Character not found");
+  return await res.json();
 }
 
-async function fetchMovieDetails(imdbID) {
-  const apikey = ""
-  const response = await fetch("https://www.omdbapi.com/?apikey=" + apikey + "&i=" + imdbID)
-  const movie = await response.json()
-
-  return movie
+async function fetchFruitById(id) {
+  const res = await fetch(`${API_BASE}/fruits/en/${id}`);
+  if (!res.ok) throw new Error("Fruit not found");
+  return await res.json();
 }
 
-document.addEventListener("DOMContentLoaded", async function () {
-  // Come leggere il parametro id dall'URL?
-  const params = new URLSearchParams(window.location.search)
-  const id = params.get("id")
-  const movieDetails = await fetchMovieDetails(id)
-  console.log(movieDetails)
-  createMovieDetailsCard(movieDetails)
-})
+function renderCharacter(char) {
+  const container = document.getElementById("detail");
+  const html = `
+    <h1>${char.name}</h1>
+    <p><strong>Job:</strong> ${char.job || "Unknown"}</p>
+    <p><strong>Bounty:</strong> ${char.bounty || "N/A"}</p>
+    <p><strong>Size:</strong> ${char.size || "Unknown"}</p>
+    <p><strong>Age:</strong> ${char.age || "Unknown"}</p>
+    <p><strong>Status:</strong> ${char.ststus || "Unknown"}</p>
+    <hr />
+  `;
+  container.innerHTML = html;
+}
+
+function renderFruit(fruit) {
+  const container = document.getElementById("detail");
+  const html = `
+    <h2>Devil Fruit: ${fruit.name}</h2>
+    <img src="${fruit.image || 'img/default-fruit.png'}" alt="${fruit.name}" width="150" />
+    <p><strong>Type:</strong> ${fruit.type}</p>
+    <p><strong>Effect:</strong> ${fruit.description || "No description available."}</p>
+  `;
+  container.innerHTML += html;
+}

@@ -14,9 +14,9 @@ async function loadCharacters() {
       //<img src="${c.image}" alt="no img" width="100"><br>
       el.innerHTML = `
         <strong>${c.name}</strong><br>
-        <small>${c.job}</small><br>
         <small>bounty: ${c.bounty}</small><br>
-        <button class="btn btn-primary" onclick="location.href='detailPages/char.html'">Details</button>
+        <button class="btn btn-primary" onclick="location.href='detailPages/char.html?id=' + ${c.id}">Details</button>
+
       `;
       charBox.appendChild(el);
     });
@@ -38,7 +38,7 @@ async function loadDevilFruits(){
         <img src="${c.image}" alt="no img" width="100"><br>
         <strong>${c.name}</strong><br>
         <small>${c.roman_name}</small>
-        <button class="btn btn-primary" onclick="location.href='detailPages/fruit.html'">Details</button>
+        <button class="btn btn-primary" onclick="location.href='detailPages/fruit.html?id='+${c.id}">Details</button>
       `;
       charBox.appendChild(el);
     });

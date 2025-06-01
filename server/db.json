@@ -1,17 +1,22 @@
 {
-    "users":
-    [
-        {
-            "id": 1,
-            "uname": "luffy",
-            "psw": "gomu",
-            "captain": {
-                "name": "Monkey D. Luffy",
-                "bounty": 1500000000,
-                "fruit": 1
-            },
-            "boatId": 1,
-            "crewMembers": [2, 3, 5, 8]
-        }
-    ]
+  "users": [
+    {
+      "id": "1",
+      "uname": "luffy",
+      "psw": "gomu",
+      "captain": {
+        "name": "marco",
+        "bounty": 100,
+        "fruit": "Gum-Gum Fruit",
+        "photo": ""
+      },
+      "boatId": 1,
+      "crewMembers": [
+        2,
+        3,
+        5,
+        8
+      ]
+    }
+  ]
 }
