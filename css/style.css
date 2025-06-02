@@ -56,3 +56,21 @@ form button {
     font-size: 2rem;
   }
 }
+
+
+.crew-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.remove-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
