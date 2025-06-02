@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Richiedi la tua Taglia</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    form {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #7d6d07;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    form input, form textarea, form button {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    .error {
+      color: red;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <script src="js/navbar.js"></script>
+  </nav>
+
+  <main>
+    <h1 style="text-align:center">Richiedi la tua Taglia</h1>
+    <form id="wantedForm">
+      <label for="pirateName">Nome Pirata *</label>
+      <input type="text" id="pirateName" required />
+
+      <label for="crime">Crimini commessi *</label>
+      <textarea id="crime" rows="3" required></textarea>
+
+      <label for="amount">Importo taglia (in milioni) *</label>
+      <input type="number" id="amount" min="1" required />
+
+      <button type="submit">Invia richiesta</button>
+      <div id="formMessage" class="error"></div>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById("wantedForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById("pirateName").value.trim();
+      const crime = document.getElementById("crime").value.trim();
+      const amount = parseInt(document.getElementById("amount").value.trim());
+      const message = document.getElementById("formMessage");
+
+      message.textContent = "";
+
+      if (!name || !crime || isNaN(amount) || amount < 1) {
+        message.textContent = "Compila tutti i campi correttamente!";
+        return;
+      }
+
+      console.log("📋 Richiesta Taglia:");
+      console.log("Nome:", name);
+      console.log("Crimini:", crime);
+      console.log("Taglia richiesta:", amount + " milioni");
+
+      message.style.color = "green";
+      message.textContent = "Richiesta inviata con successo!";
+
+      // Reset opzionale
+      setTimeout(() => {
+        document.getElementById("wantedForm").reset();
+        message.textContent = "";
+        message.style.color = "red";
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

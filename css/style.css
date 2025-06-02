@@ -74,3 +74,18 @@ form button {
   cursor: pointer;
   border-radius: 4px;
 }
+
+
+#captain, #ship, #crew {
+  margin-bottom: 1.5rem;
+}
+.crew-member {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  background-color: #f8f8f8;
+}

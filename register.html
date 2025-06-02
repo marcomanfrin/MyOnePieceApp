@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrazione Utente</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/nav.css"/>
+  <style>
+    form {
+      max-width: 400px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #eef6f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    form input, form button {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.6rem;
+      font-size: 1rem;
+    }
+    .error {
+      color: red;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav id="main-nav"></nav>
+  </header>
+
+  <main>
+    <h1 style="text-align: center;">Registrazione Utente</h1>
+    
+    <form id="registerForm">
+      <label for="username">Username *</label>
+      <input type="text" id="username" required />
+
+      <label for="password">Password *</label>
+      <input type="password" id="password" minlength="6" required />
+
+      <button type="submit">Registrati</button>
+      <div id="formMessage" class="error"></div>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("formMessage");
+
+      message.textContent = "";
+
+      if (!username || !password || password.length < 6) {
+        message.textContent = "Compila tutti i campi correttamente.";
+        return;
+      }
+
+      // Simulazione submit
+      console.log("📋 Nuova registrazione:");
+      console.log("Username:", username);
+      console.log("Password:", password);
+
+      message.style.color = "green";
+      message.textContent = "Registrazione avvenuta con successo!";
+
+      setTimeout(() => {
+        document.getElementById("registerForm").reset();
+        message.textContent = "";
+        message.style.color = "red";
+      }, 3000);
+    });
+  </script>
+  <script src="js/nav.js"></script>
+</body>
+</html>
