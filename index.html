@@ -8,21 +8,26 @@
   <meta name="description" content="Accedi alla tua avventura nel mondo di One Piece. Crea la tua ciurma e inizia il viaggio!" />
   <meta name="keywords" content="One Piece, login, accedi, ciurma, capitano, avventura" />
   <meta name="author" content="Marco Manfrin" />
-
-
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/nav.css">
 </head>
 <body>
-  <nav>
-    <script src="js/navbar.js"></script>
-  </nav>
-  <h1>Login</h1>
-  <form id="loginForm">
-    <input type="text" placeholder="User" id="user" required />
-    <input type="password" placeholder="Password" id="pw" required />
-    <button type="submit">Login</button>
-  </form>
-  <script src="js/login.js"></script>
+  <header>
+    <nav id="main-nav"></nav>
+    <script src="js/nav.js"></script>
+  </header>
+  <main>
+    <h1>Login</h1>
+    <form id="loginForm">
+      <label for="user">Username</label>
+      <input type="text" id="user" required />
+
+      <label for="pw">Password</label>
+      <input type="password" id="pw" required />
+
+      <button type="submit">Login</button>
+    </form>
+  </main>
 </body>
+<script src="js/login.js"></script>
 </html>

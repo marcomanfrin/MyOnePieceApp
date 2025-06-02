@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks = navLinks.filter(link => link.id !== "loginLink");
   }
 
-  const nav = document.createElement("nav");
+  const nav = document.getElementById("main-nav");
   nav.className = "navbar";
+  nav.innerHTML = "";
 
   navLinks.forEach(link => {
     const a = document.createElement("a");
@@ -43,5 +44,5 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.appendChild(logoutBtn);
   }
 
-  document.body.prepend(nav);
+  //document.body.prepend(nav);
 });

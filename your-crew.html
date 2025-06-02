@@ -11,20 +11,21 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/nav.css">
 </head>
-<nav>
-    <script src="js/navbar.js"></script>
-</nav>
 <body>
-  <h1>Your Crew</h1>
-  
-  <div id="captain"></div>
-  <div id="ship"></div>
-  <div id="crew"></div>
-
-  <div><span id="totalBounty">0</span></div>
-  <script src="js/crew.js"></script>
-
+  <header>
+    <nav id="main-nav"></nav>
+    <script src="js/nav.js"></script>
+  </header>
+  <main>
+    <h1>Your Crew</h1>
+    <section id="captain"></section>
+    <section id="ship"></section>
+    <section id="crew"></section>
+    <div><span id="totalBounty">0</span></div>
+    <script src="js/crew.js"></script>
+  </main>
 </body>
+
 
 <style>
   #captain, #ship, #crew {
