@@ -100,7 +100,10 @@ function renderShips(data) {
   data.forEach(c => {
     const el = document.createElement("div");
     el.className = "carousel-item";
-    el.innerHTML = `<strong>${c.name}</strong><br>`;
+    el.innerHTML = `
+      <strong>${c.name}</strong><br>
+      <button class="select-ship" data-id="${c.id}">Choose boat</button>
+      `;
     charBox.appendChild(el);
   });
 }

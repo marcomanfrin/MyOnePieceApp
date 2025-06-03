@@ -14,6 +14,22 @@
       "crew": [
         1
       ]
+    },
+    {
+      "id": "20a0",
+      "uname": "zoro",
+      "psw": "enma00",
+      "captain": {
+        "name": "marco",
+        "bounty": 100,
+        "fruit": "Ciro-Fruit",
+        "photo": ""
+      },
+      "boatId": null,
+      "crew": [
+        1,
+        3
+      ]
     }
   ]
 }
