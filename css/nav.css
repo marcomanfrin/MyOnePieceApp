@@ -1,40 +1,23 @@
-/* NAVBAR */
-.navbar {
-  background-color: #ffffff;
+
+nav#main-nav {
+  background-color: var(--bg-dark);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-around;
-  align-items: right;
-  border-bottom: 1px solid #ddd;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-nav a {
-  color: #111;
+nav#main-nav a {
+  color: var(--text-light);
   text-decoration: none;
-  font-weight: 600;
   margin: 0 1rem;
-}
-
-.navbar .nav-link:hover {
-  color: #1d4ed8;
-}
-
-nav button{
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.375rem;
-  cursor: pointer;
-}
-
-
-.nav-link:hover {
-  text-decoration: underline;
-}
-
-.active-link {
   font-weight: bold;
-  color: #3b82f6; /* o un colore che risalti */
-  border-bottom: 2px solid #3b82f6;
+  transition: color 0.2s ease;
+}
+
+nav#main-nav a:hover {
+  color: var(--accent);
 }

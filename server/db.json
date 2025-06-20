@@ -7,12 +7,13 @@
       "captain": {
         "name": "marco",
         "bounty": 100,
-        "fruit": "Gum-Gum Fruit",
+        "fruit": "Fruit Boum-Boum",
         "photo": ""
       },
       "boatId": 1,
       "crew": [
-        1
+        1,
+        2
       ]
     },
     {
