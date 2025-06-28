@@ -17,6 +17,21 @@ document.addEventListener("click", async e => {
   }
 });
 
+document.addEventListener("click", async e => {
+  if (e.target.classList.contains("select-ship")) {
+    const boatId = e.target.dataset.id;
+    const boat = allShips.find(b => b.id == boatId);
+
+    if (!boat) {
+      alert("Nave non trovata.");
+      return;
+    }
+
+    await chooseBoat(boat);
+  }
+});
+
+
 async function aggiungiAllaCiurma(member) {
   const userId = localStorage.getItem("userId");
   if (!userId) {
@@ -62,3 +77,42 @@ async function aggiungiAllaCiurma(member) {
   }
 }
 
+async function chooseBoat(boat) {
+  const userId = localStorage.getItem("userId");
+  if (!userId) {
+    alert("Devi essere loggato per scegliere una nave.");
+    return;
+  }
+
+  try {
+    // Recupera i dati utente
+    const res = await fetch(`http://localhost:3001/users/${userId}`);
+    const user = await res.json();
+    const currentBoat = user.boatId;
+
+    // Se la nave è già assegnata
+    if (currentBoat === boat.id) {
+      alert(`${boat.name} è già la tua nave.`);
+      return;
+    }
+
+    // Aggiorna la nave
+    const updateRes = await fetch(`http://localhost:3001/users/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ boatId: boat.id })
+    });
+
+    if (updateRes.ok) {
+      alert(`${boat.name} è stata impostata come tua nave!`);
+    } else {
+      alert("Errore durante il salvataggio nel server.");
+    }
+
+  } catch (err) {
+    console.error("Errore:", err);
+    alert("Errore di rete.");
+  }
+}

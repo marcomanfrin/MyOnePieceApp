@@ -10,8 +10,12 @@
         "fruit": "Fruit Boum-Boum",
         "photo": ""
       },
-      "boatId": 1,
-      "crew": []
+      "boatId": 6,
+      "crew": [
+        1,
+        8
+      ],
+      "boat": 3
     },
     {
       "id": "20a0",

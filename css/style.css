@@ -139,3 +139,12 @@ form button:hover {
   border-color: var(--secondary);
   background-color: #ecf4ff;
 }
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card {
+  margin: 2rem;
+}

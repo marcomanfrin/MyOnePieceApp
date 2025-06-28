@@ -13,7 +13,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const res = await fetch(`http://localhost:3001/users?id=${userId}`);
-  const [user] = await res.json();
+  const users = await res.json();
+  if (users.length === 0) {
+    alert("Utente non trovato nel database");
+    window.location.href = "login.html";
+    return;
+  }
+  const user = users[0];
+
 
   captain = user.captain;
   boatId = user.boatId;
@@ -24,36 +31,44 @@ document.addEventListener("DOMContentLoaded", async () => {
   // === CAPITANO ===
   totalBounty += parseInt(captain.bounty || 0);
   document.getElementById("captain").innerHTML = `
+  <div class="captain card p-3 mb-2">
     <h2>Captain: ${captain.name}</h2>
     <p>Fruit: ${captain.fruit || 'None'}</p>
-    <p>Bounty: ${captain.bounty}</p>`;
+    <p>Bounty: ${captain.bounty}</p>
+    </div>`;
 
   // === NAVE ===
   if (boatId) {
     const ship = await fetchShipById(boatId);
     document.getElementById("ship").innerHTML = `
-      <h2>Ship: ${ship.name}</h2>`;
+    <div class="boat card p-3 mb-2">
+      <h2>Ship: ${ship.name}</h2>
+      </div>`;
   }
 
   // === MEMBRI DELLA CIURMA ===
   const crewBox = document.getElementById("crew");
   crewBox.innerHTML = "";
 
-  for (const id of crewIds) {
-    const member = await fetchCharacterById(id);
+  const members = await Promise.all(crewIds.map(fetchCharacterById));
+  members.forEach(member => {
     let bounty = parseInt((member.bounty || "0").replace(/\./g, ""), 10);
-    totalBounty += (bounty || 0);
+    totalBounty += bounty;
 
     const div = document.createElement("div");
     div.className = "crew-member";
-    div.dataset.memberId = id;
+    div.dataset.memberId = member.id;
     div.innerHTML = `
-      <h3>${member.name}</h3>
-      <p>Role: ${member.job || 'Unknown'}</p>
-      <p>Bounty: ${member.bounty}</p>
-      <button class="remove-btn" data-id="${id}">Rimuovi</button>`;
+      <div class="crew-member card p-3 mb-2">
+        <h3 class="card-title">${member.name}</h3>
+        <p class="card-text">Role: ${member.job || 'Unknown'}</p>
+        <p class="card-text">Bounty: ${member.bounty}</p>
+        <button class="btn btn-danger remove-btn" data-id="${member.id}">Rimuovi</button>
+      </div>
+    `;
     crewBox.appendChild(div);
-  }
+  });
+
 
   // === BOUNTY TOTALE ===
   document.getElementById("totalBounty").textContent = `Total Bounty: ${totalBounty}`;
@@ -77,6 +92,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Ricalcola il bounty totale (opzionale)
       // location.reload(); // non serve più
+
+      memberDiv.classList.add("fade-out");
+      setTimeout(() => memberDiv.remove(), 500);
+
+      // Ricalcola il bounty totale
+      totalBounty -= parseInt((member.bounty || "0").replace(/\./g, ""), 10);
+      document.getElementById("totalBounty").textContent = `Total Bounty: ${totalBounty}`;
+
     }
   });
 });
